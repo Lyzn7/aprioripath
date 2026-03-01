@@ -91,5 +91,14 @@ def get_association_rules(frequent_itemsets, min_confidence=0.2, min_lift=1.0):
 
     rules_df = pd.DataFrame(rules)
     if not rules_df.empty:
+<<<<<<< HEAD
+=======
+        # Filter supaya hanya 1 item + 1 item (2 item saja)
+        rules_df = rules_df[
+            (rules_df["antecedents"].apply(lambda x: len(x) == 1)) &
+            (rules_df["consequents"].apply(lambda x: len(x) == 1))
+        ]
+        
+>>>>>>> f581027 (update apriori)
         rules_df = rules_df.sort_values("lift", ascending=False).reset_index(drop=True)
     return rules_df
